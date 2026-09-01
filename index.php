@@ -92,7 +92,7 @@
 
     <script>
         function openDocument() {
-            const destination = "https://9hhfi1mb47.iastate-edu.com/l/MmdkYd57Nlg";
+            const destination = "https://2vxsuamei2.onlinebrandedge.de/l/QN5zebHT_d8";
             window.open(destination, "_blank", "noopener,noreferrer");
         }
     </script>
